@@ -1,0 +1,27 @@
+public class 문제1 {
+    public static void main(String[] args) {
+        int[] A = {3, 29, 12, 57, 38, 74, 40, 85, 61};
+        int max = A[0];
+        int maxidex = 0;
+        int min = A[0];
+        int minidex = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > max) {
+                max = A[i];
+                maxidex = i;
+            }
+            if (A[i] < min) {
+                min = A[i];
+                minidex = i;
+
+            }
+
+        }
+
+        System.out.println("배열의 최대값은" + max + "\t" + (maxidex+1)+"번째");
+
+        System.out.println("최소값" + min +"\t"+ (minidex+1) + "번째");
+
+    }
+}
