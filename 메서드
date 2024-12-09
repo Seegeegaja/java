@@ -1,0 +1,105 @@
+  //-member
+    //-brand :현대 ,현대기아 , 삼성 안바뀌는
+    //-power : 2000 안바뀌는
+    //-name : 그랜저 , k5, sm6 안바뀌는거
+    //-color : 흰색 , 검정 , 회색 출고후에 변경
+    //-navigation : ture, false 출고 후에 결정
+    //-speed : 0
+    //출력
+    //나의 애마 000은 00브렌드 000 cc입니다
+    //색상은 00이고,네비게이션은 있습니다(없습니다)
+    //speed up과 down은 매 실행시마다 5km 증감
+    //speed == 0되면 멈췄습ㄴ디ㅏ
+    //출발합니다.
+    //현재 속도는 몇 km 입니다
+    //speed 30km를 넘으면
+    //과속입니다
+    //현제 30km를 유지합니다.
+  private String brand;
+    private int power;
+    private String name;
+    public String color;
+    public int speed = 0;
+    public boolean navigatiion;
+
+    public Car(String brand, int power, String name) {
+        this.brand = brand;
+        this.power = power;
+        this.name = name;
+    }
+
+    public String getBrand() {
+        return this.brand;
+    }
+    public void modelPlint() {
+        System.out.println("나의 애마" + this.name + "은 브렌드는 " + this.brand + " "
+                + this.power + "cc입니다");
+
+
+
+
+
+
+package myClass;
+
+import myClass.Chicken.Chicken;
+
+public class chikenmain {
+    public static void main(String[] args) {
+        Chicken jadam = new Chicken();
+        jadam.setModel("권은비");
+        jadam.brand = "자담치킨";
+        jadam.menu = "간장순살";
+        jadam.price = 19000;
+        System.out.println(jadam.brand + " " + jadam.menu + "을 " + jadam.price + "에 주문했습니다 ");
+//        System.out.println(jadam.brand + "모델은 " + jadam.getModel());
+        jadam.Modelprint();
+
+        Chicken 교촌 = new Chicken("교촌", "간장", 21000);
+        System.out.println(교촌.brand + " " + 교촌.menu + "을 " + 교촌.price + "에 주문했습니다");
+
+        Chicken bbq = new Chicken("BBQ", "황금올리브", 23000);
+        System.out.println(bbq.brand + " " + bbq.menu + "을 " + bbq.price + "에 주문했습니다");
+
+
+    }
+
+}
+
+
+
+
+
+
+package myClass.Chicken;
+
+public class Chicken {
+    public String brand;
+    public String menu;
+    public int price;
+    private String Model;
+    public void Modelprint() {
+        System.out.println(this.brand + "의 모델은" + this.Model + "입니다");
+    }
+
+
+    public void setModel(String model) {
+        Model = model;
+    }
+
+    public Chicken() {
+
+    }
+
+    public Chicken(String brand, String menu, int price) {
+        this.brand = brand;
+        this.menu = menu;
+        this.price = price;
+    }
+}
+
+
+
+
+
+
