@@ -7,4 +7,4 @@ phone varchar(20)
 
 insert into professor
 (name, belong, phone)
-values('유재석', 'COMPUTER',01012345678);
+values('유재석', 'COMPUTER','01012345678');
