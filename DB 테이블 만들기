@@ -1,0 +1,10 @@
+create table professor(
+p_id int primary key auto_increment,
+name varchar(20) not null,
+belong varchar(200),
+phone varchar(20)
+);
+
+insert into professor
+(name, belong, phone)
+values('유재석', 'COMPUTER',01012345678);
