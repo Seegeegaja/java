@@ -1,10 +1,85 @@
+chcp
+
+chcp 65001 - utf-8로 전환
+
+mysql -u root -p
+
+show databases;
+
+desc 0000000; -구조 보는키
+
+select * from 000000000; - 테이블 안쪽 보는거
+
+source 컨c컨v 복붙할때
+
+use test_db;
+
+show tables;
+
+테이블 만들기
 create table professor(
 p_id int primary key auto_increment,
 name varchar(20) not null,
 belong varchar(200),
 phone varchar(20)
-);
 
+내용 넣기 professor에
 insert into professor
 (name, belong, phone)
 values('유재석', 'COMPUTER','01012345678');
+
+
+create table professor(
+p_id int primary key auto_increment,
+name varchar(20) not null,
+belong varchar(20),
+phone varchar(20) );
+
+insert into professor
+(name, belong , phone)
+values ('유재석', 'COMPUTER' , '01012345678');
+
+
+insert into professor(name, belong , phone)
+values ('황영조', 'SPORTS' , '01021521489'),
+('케이멀', 'DANCE' , '01065498721'),
+('호날두', 'COMPUTER' , '01077885544'),
+('장준용', 'SPORTS' , '01024697319');
+
+
+mysql 정렬하기(검색)
+
+select name, phone, from 테이블 이름
+조건 where 필드명 = 'O'
+
+
+
+select distinct belong from student; 주소만 대표적으로belong
+
+select name, phone from student
+order by name asc
+limit 5; ---- 데이터중 몇개 가져 오겠냐~~~~~
+
+
+
+필드명 like''
+
+% = 공백을 포함한 모든것
+
+_ = 무조건 갯수만큼 문자필요
+
+ex)
+select * from student
+    -> where s_id like '2008%';
+
+
+
+
+ select s_id, name, belong from student
+    -> where s_id like '2011%'
+    -> order by belong asc, name desc;
+
+
+
+select name, belong from student
+    -> where belong not like 'com%';
