@@ -1,0 +1,11 @@
+자판기
+
+1:vo(value object):자판기의 제품을 구상한 class하나
+
+2:view(화면에 보여주는 내용)
+
+3:service(사용자가 요청하는 처리)
+
+4:repository:저장,수정,삭제,추가
+
+
