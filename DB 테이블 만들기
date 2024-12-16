@@ -83,3 +83,124 @@ select * from student
 
 select name, belong from student
     -> where belong not like 'com%';
+create table 테이블명(
+필드명 타입 제약조건,)
+
+id,name,address,phon
+create table telbook(
+ di int primary key auto_increment,
+name varchar (20) nat null,
+address varchar(200),
+phone varchar(20),
+);
+
+insert into telbook (name, address, phone),
+values ('장준용' , '서울 강남구' , '010-1111-1111');  
+
+belong이 dance or sports
+
+in안에 필드명 입력 입력한 값찾기 in 와일드카드를 인식하지 못함
+in('dance','sports')
+
+원하는 내용의 자릿수 찾기
+wild caracter : %,_
+where 필드명 like' '
+
+
+select *from student
+where name>10
+
+
+staus 2 and 3in
+belong에 %C% 포합하는 자료를
+ s_id,name,belong,stauts를 출력
+name에 대해서는 내림차순으로
+Ex)
+select s_id,name,belong,status from student
+where status in (2,3) and belong like'%C%'
+order by name desc;
+
+select s_id as ID ,name as 이름,belong as 소속,status from student
+where status in (2,3) and belong like'%C%'
+order by name desc;
+
+
+
+삭제/수정 조심해서 사용
+drop : 완전히 구조까지 삭제
+delete : 내용만 삭제 ---- 조건 명시 해야함
+
+폰중에 343을 포함하는 자료를 삭제
+delete from student where phone like'%343%';
+drop table; 테이블 명
+drop database 데이터 명
+
+update 구문 -- 항상 조건을 달아서 처리
+update 테이블 명
+          set 바꾸고 싶은 컬럼
+where  필드명 = 조건
+update student set phone = '010-1111-2222';
+
+
+조로의 의 소속을 댄스로 변경
+
+update student set belong ='DANCE'
+where s_id = '20100102';
+
+오공의 belong을 ' Golf', phone = '119'
+update student set belong = 'Golf', phone = '119'
+    -> where name = '오공';
+
+
+
+
+
+
+crud
+c: Create(inset into table명... 구문)
+r: Read (select * from table명... 구문)
+u : Update(update table table명... 구문)
+d : Delete(Delete from table명... 구문)
+
+
+
+
+
+dept 테이블 생성(
+-dept_id : 기본키,자동증가
+-dept_name : 문자 -null허용안함
+-dept_ioc : 문자 -null허용안함
+
+data
+1.기획부 서울
+2.영업1부 서울
+3.영없2부 부산
+4.영업3부 대구
+5.관리부 서울
+
+출력
+전체 영업부 자료의 ID,NAME,LOCATION을 필드명으로 출력
+
+영업3부 삭제
+관리부의 지역을 제주도로 변경
+
+테이블 만들기
+create table dept (
+dept_id int primary key auto_increment,
+name varchar (20) not null,
+ico varchar (20) not null
+);
+
+내용 넣기
+insert into dept
+(name,ico)
+values('기획부','서울'),('영업1부','서울'),('영업2부','부산'),
+('영업3부','대구'),('관리부','서울');
+
+삭제
+delete from dept where name = '영업3부';
+
+
+수정
+update dept set ico = '제주도'
+    -> where name = '관리부';
