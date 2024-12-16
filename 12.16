@@ -1,0 +1,44 @@
+원시타입 데이터도 비교할때는 주소를 갖고 비교를 한다
+
+constant(상수) pool저장
+
+int a =3;   100번지 ->3
+int b = 3;  b->100번지
+b =5;       b->104번지 5
+
+String str3 = new String("장원영");
+String str4 = new String("장원영");
+
+str3 = 1000번지 "장원영"
+str4 = 2000번지 "장원영"
+
+
+
+person p1 = new Person ("장원영",20);
+person p2 = new Person ("장원영",21);
+
+
+데이터 구조 (자료구조)
+
+Collections
+
+ArrayList: (중복가능)
+List<담을 타입> 이름 = new ArrayList<>();
+-삽입 삭제가 자유롭다.
+이름.size(), index(),add(),set(),remve()
+
+set: 중복 불가
+set<Type> name = new HasgSet<>();
+
+map<키의 타입, 값의 타입>: 중복 가능
+키,값
+
+Person jang = new Person("장원영", 20);
+Person ahn = new Person("안유진", 21);
+Person lee = new Person("이서", 19);
+
+map
+key     value
+1	jang{"장원영", 20}
+2	ahn{"안유진", 21}
+3	lee{
