@@ -204,3 +204,123 @@ delete from dept where name = '영업3부';
 수정
 update dept set ico = '제주도'
     -> where name = '관리부';
+
+구조 변경 구문
+--modify : 필드명은 못바꾸는것
+alter table 테이블 명
+modify column 원래이름 타입...
+
+
+change : 필드명까지 바꾸는것
+alter table 테이블 명
+change column 원래이름 타입...
+
+
+change column name name vachar(50);
+
+
+기본함수 ---- grouping
+sum, avg(평균계산),count,max(최대값),min(최소값)
+
+
+연산 조건으로 묶을 그룹지정 : group by
+묶은 그룹의 결과에 대한 별고의 조건을 지정 : having
+
+select count(name) from student;
+
+select count(*) as TotalRow from student;
++----------+
+| TotalRow |
++----------+
+|       16 |
++----------+
+1 row in set (0.00 sec)
+
+ select count(*) as count from student where belong = 'computer';
++-------+
+| count |
++-------+
+|     4 |
++-------+
+1 row in set (0.00 sec)
+
+belong 		counte
+computer 	 4
+dance		 2
+spots 		 3
+
+
+select belong as Belong , count(*) as count from student
+group by belong
+order by count asc;
++----------+-------------+
+| Belong   | Belongcount |
++----------+-------------+
+| Golf     |           1 |
+| MUSIC    |           2 |
+| SPORTS   |           2 |
+| ENGLISH  |           2 |
+| COMPUTER |           4 |
+| DANCE    |           5 |
++----------+-------------+
+
+
+select belong as Belong , count(*) as Belongcount from student
+group by belong
+order by Belongcount asc;
++----------+-------------+
+| Belong   | Belongcount |
++----------+-------------+
+| Golf     |           1 |
+| MUSIC    |           2 |
+| SPORTS   |           2 |
+| ENGLISH  |           2 |
+| COMPUTER |           4 |
+| DANCE    |           5 |
++----------+-------------+
+
+
+select belong as Belong , count(*) as Belongcount from student
+group by belong
+having Belongcount >3
+order by Belongcount asc;
++----------+-------------+
+| Belong   | Belongcount |
++----------+-------------+
+| COMPUTER |           4 |
+| DANCE    |           5 |
++----------+-------------+
+2 rows in set (0.00 sec)
+
+소속이 컴퓨터 또는 댄스인 구릅의 학생수의내림차순으로 출력
+select belong as Belong , count(belong) as count from student
+
+
+select belong, count(*) as groupCount from student
+where belong in ('computer','dance')
+group by belong
+order by groupCount asc;
++----------+------------+
+| belong   | groupCount |
++----------+------------+
+| COMPUTER |          4 |
+| DANCE    |          5 |
++----------+------------+
+
+
+select belong as 소속, count(*) 인원수 , sum(status) as 합
+from student
+group by belong
+order by ;
+
+select count(*), max(status),min(status),sum(status),avg(status)
+from student
+group by belong;
+
+distinct --중복을 제외한 데이터만 가져온다
+-limit
+offset --가지고 오기 시작할 위치
+select distinct *
+
+
+select * from student limit 3 offset 1;
