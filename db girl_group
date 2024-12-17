@@ -2,10 +2,10 @@ select * from girl_group;
 
 
 
-select g.name, g.debut, s.title, s.lyrics, s._id as song ID
+select g.name, g.debut, s.title, s.lyrics, s.s_id as song ID
 from girl_group as g
 inner join song as s
-where g.hit_song_id = s._id;
+where g.hit_song_id = s.s_id;
 
 
 
