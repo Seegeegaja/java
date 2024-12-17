@@ -1,0 +1,114 @@
+select * from girl_group;
+
+
+
+select g.name, g.debut, s.title, s.lyrics, s._id as song ID
+from girl_group as g
+inner join song as s
+where g.hit_song_id = s._id;
+
+
+
+
+
+select g.name, g.debut, s.tile, s.lyrics, s._id as songID
+from girl_group as g
+inner song as s
+where g.hit_song_id = s._id;
+
+//조건
+select g.name, g.debut, s.title, s.lyrics, s._id as song ID
+from girl_group as g
+inner song as s
+on g.hit_song_id = s._id
+where g.name = '원더걸스';
+
+select
+
+
+create table entertaonment(e_id,
+
+
+alter table girl_group
+change column _id g_id int;
+
+
+
+
+alter table song
+change column _id s_id int;
+
+
+girl_group
+
+
+
+
+
+
+
+select g.name, e.name from entertainment
+join girl_group as g
+on e.e_id = g.enter_id;
+
+
+
+
+alias
+girl_group->g
+song -> s
+entertainment -> e
+
+
+
+select g.name, e.name, g.debut, s.title
+from entertainment e
+inner join girl_group g
+on e.e_id = g.enter_id
+inner join song s
+on s.s_id = g.hit_song_id;
++--------------------------+-----------+------------+--------------+
+| name                     | name      | debut      | title        |
++--------------------------+-----------+------------+--------------+
+| 원더걸스                 | JYP       | 2007-09-12 | Tell Me      |
+| 소녀시대                 | SM        | 2009-06-03 | Gee          |
+| 카라                     | SM        | 2009-07-30 | 미스터       |
+| 브라운아이드걸스         | 안테나    | 2008-01-17 | Abracadabra  |
+| 다비치                   | 하이브    | 2009-02-27 | 8282         |
+| 2NE1                     | JYP       | 2009-07-08 | I Don't car  |
+| f(x)                     | 하이브    | 2011-04-20 | 피노키오     |
+| 시크릿                   | 하이브    | 2011-01-06 | 별빛달빛     |
+| 레인보우                 | 안테나    | 2010-08-12 | A            |
++--------------------------+-----------+------------+--------------+
+
+
+
+select g.name, e.name, g.debut, s.title
+from entertainment e
+inner join girl_group g
+on e.e_id = g.enter_id
+inner join song s
+on s.s_id = g.hit_song_id
+where e.name in('SM','JYP')
+
++--------------+------+------------+-------------+
+| name         | name | debut      | title       |
++--------------+------+------------+-------------+
+| 원더걸스     | JYP  | 2007-09-12 | Tell Me     |
+| 소녀시대     | SM   | 2009-06-03 | Gee         |
+| 카라         | SM   | 2009-07-30 | 미스터      |
+| 2NE1         | JYP  | 2009-07-08 | I Don't car |
++--------------+------+------------+-------------+
+
+
+SM소속의 그룹 이름, 히트곡 제목,노래가사 출력
+그룹에 대해서 내림 차순으로
+
+select g.name, e.name, s.lyrics , s.title
+from entertainment e
+inner join girl_group g
+on e.e_id = g.enter_id
+inner join song s
+on s.s_id = g.hit_song_id
+where e.name = 'SM'
+order by g.name desc;
