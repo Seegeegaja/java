@@ -324,3 +324,135 @@ select distinct *
 
 
 select * from student limit 3 offset 1;
+
+select * from song as s
+inner join girl_group as g
+on s.s_id = g.hit_song_id
+inner join entertainment as e
+on g.enter_id = e.e_id
+
+
+가사의 me 를 포함하는 자료에 
+소속사, 그룹이름 , 노래제목, 가사를 
+출력합니다
+
+select e.name, g.name, s.title
+    -> from entertainment e
+    -> join girl_group g
+    -> on e.e_id = g.enter_id
+    -> join song s
+    -> on s.s_id = g.hit_song_id;
++-----------+--------------------------+--------------+
+| name      | name                     | title        |
++-----------+--------------------------+--------------+
+| JYP       | 원더걸스                 | Tell Me      |
+| SM        | 소녀시대                 | Gee          |
+| SM        | 카라                     | 미스터       |
+| 안테나    | 브라운아이드걸스         | Abracadabra  |
+| 하이브    | 다비치                   | 8282         |
+| JYP       | 2NE1                     | I Don't car  |
+| 하이브    | f(x)                     | 피노키오     |
+| 하이브    | 시크릿                   | 별빛달빛     |
+| 안테나    | 레인보우                 | A            |
++-----------+--------------------------+--------------+
+
+소속사별 속해있는 소속그룹의 수를 출력
+
+select e.name, count(*) as 그룹수
+from entertainment e
+join girl_group g
+on e.e_id = g.enter_id
+group by e.name;
+
++-----------+-----------+
+| name      | 그룹수    |
++-----------+-----------+
+| JYP       |         3 |
+| SM        |         3 |
+| 안테나    |         2 |
+| 하이브    |         3 |
++-----------+-----------+
+
+select g.g_id, name from girl_group g
+left join song s
+on g.hit_song_id = s.s_id;
+
++------+--------------------------+
+| g_id | name                     |
++------+--------------------------+
+|    1 | 원더걸스                 |
+|    2 | 소녀시대                 |
+|    3 | 카라                     |
+|    4 | 브라운아이드걸스         |
+|    5 | 다비치                   |
+|    6 | 2NE1                     |
+|    7 | f(x)                     |
+|    8 | 시크릿                   |
+|    9 | 레인보우                 |
+|   10 | 에프터 스쿨              |
+|   11 | 포미닛                   |
++------+--------------------------+
+
+
+
+select g.g_id, name, title from girl_group g
+left join song s
+on g.hit_song_id = s.s_id;
+
++------+--------------------------+--------------+
+| g_id | name                     | title        |
++------+--------------------------+--------------+
+|    1 | 원더걸스                 | Tell Me      |
+|    2 | 소녀시대                 | Gee          |
+|    3 | 카라                     | 미스터       |
+|    4 | 브라운아이드걸스         | Abracadabra  |
+|    5 | 다비치                   | 8282         |
+|    6 | 2NE1                     | I Don't car  |
+|    7 | f(x)                     | 피노키오     |
+|    8 | 시크릿                   | 별빛달빛     |
+|    9 | 레인보우                 | A            |
+|   10 | 에프터 스쿨              | NULL         |
+|   11 | 포미닛                   | NULL         |
++------+--------------------------+--------------+
+
+select g.g_id, name, title from girl_group g
+right join song s
+on g.hit_song_id = s.s_id;
+
++------+--------------------------+--------------------+
+| g_id | name                     | title              |
++------+--------------------------+--------------------+
+|    1 | 원더걸스                 | Tell Me            |
+|    2 | 소녀시대                 | Gee                |
+|    3 | 카라                     | 미스터             |
+|    4 | 브라운아이드걸스         | Abracadabra        |
+|    5 | 다비치                   | 8282               |
+| NULL | NULL                     | 기대해             |
+|    6 | 2NE1                     | I Don't car        |
+| NULL | NULL                     | Bad Girl Good Girl |
+|    7 | f(x)                     | 피노키오           |
+|    8 | 시크릿                   | 별빛달빛           |
+|    9 | 레인보우                 | A                  |
+| NULL | NULL                     | 나혼자             |
+| NULL | NULL                     | LUV                |
+| NULL | NULL                     | 짧은치마           |
+| NULL | NULL                     | 위아래             |
+| NULL | NULL                     | Dumb Dumb          |
++------+--------------------------+--------------------+
+
+
+
+create table employee(
+id int primary key auto_increment,
+name varchar(10),
+superior_id int);
+
+insert into employee(name, superior_id)
+values('김사장',null),
+('정과장',1),
+('최대리',2),
+('이대리',3),
+('박고문',null);
+
+update employee set superior_id = '2'
+where name = '이대리';
