@@ -81,3 +81,19 @@ insert into customer
 ('도쇠돌', '123-6774', '0008041346574', 9 ),
 ('권홍이', '767-1234', '7312251234689', 13 ),
 ('김안나', '767-1677', '7510152432168', 4);
+
+
+1.select * from dept;
+
+2.select dep_id, loc from dept;
+
+3. 
+select emp_name, salary +300 as '인센티브' from employee;
+
+4. select emp_name, mgr_emp_no from employee
+where  ifnull(mgr_emp_no, 0);
+
+5.select 
+
+
+
