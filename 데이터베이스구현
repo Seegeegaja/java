@@ -33,7 +33,7 @@ dep_id int,
 position varchar(10) not null,
 salary int default 0 ,
 hire_date date,
-jumin_num char(13),
+jumin_num char(13) unique,
 phone_num varchar(15) not null,
 mgr_emp_no int);
 
@@ -66,20 +66,22 @@ create table customer(
 cus_id int primary key auto_increment,
 cus_name varchar(10) not null ,
 tel_num varchar(15),
-jumin_num char(13) not null,
-emp_no int default 0);
+jumin_num char(13) not null ,
+emp_no int default 0,
+foreign key (jumin_num) references employee(jumin_num) on delete cascade on update cascade
+);
 
 insert into customer
 (cus_name, tel_num, jumin_num, emp_no) values
 ('류민이', '123-1234', '7001131537915', 3),
-('이강민', '343-1454', '6902161627914', 2 ),
+('이강민', '343-1454', '6902161627914', 2),
 ('이영희', '144-1655', '7503202636215', NULL),
 ('김철이', '673-1674', '7704301234567', 4),
-('박류완', '123-1674', '7205211123675', 3 ),
+('박류완', '123-1674', '7205211123675', 3),
 ('서캔디', '673-1764', '6507252534566', NULL),
 ('신똘이', '176-7677', '0006083648614', 7),
-('도쇠돌', '123-6774', '0008041346574', 9 ),
-('권홍이', '767-1234', '7312251234689', 13 ),
+('도쇠돌', '123-6774', '0008041346574', 9),
+('권홍이', '767-1234', '7312251234689', 13),
 ('김안나', '767-1677', '7510152432168', 4);
 
 
