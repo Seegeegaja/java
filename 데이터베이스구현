@@ -35,7 +35,9 @@ salary int default 0 ,
 hire_date date,
 jumin_num char(13) unique,
 phone_num varchar(15) not null,
-mgr_emp_no int);
+mgr_emp_no int,
+foreign key (dep_id) references dept (dep_id) on update cascade on delete cascade
+);
 
 insert into employee
 (emp_name, dep_id, position, salary, 
@@ -68,7 +70,7 @@ cus_name varchar(10) not null ,
 tel_num varchar(15),
 jumin_num char(13) not null ,
 emp_no int default 0,
-foreign key (jumin_num) references employee(jumin_num) on delete cascade on update cascade
+foreign key (emp_no) references employee (emp_id) on update cascade on delete cascade
 );
 
 insert into customer
