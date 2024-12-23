@@ -386,10 +386,87 @@ group by dep_id,position;
 | 2900.0000 |
 +-----------+
 
-27.
+27. select emp_name,salary from employee
+    -> where salary > (
+    -> select salary from employee
+    -> where emp_name in('공부만'));
++-----------+--------+
+| emp_name  | salary |
++-----------+--------+
+| 홍길동    |   5000 |
+| 깨똥이    |   4500 |
++-----------+--------+
+
+28.select emp_name,position,salary from employee
+    -> where position = (select position from employee
+    -> where emp_id = 13) and salary > (select salary from
+    -> employee
+    -> where emp_id = 17);
++-----------+----------+--------+
+| emp_name  | position | salary |
++-----------+----------+--------+
+| 한국남    | 부장     |   3000 |
+| 무궁화    | 부장     |   3000 |
++-----------+----------+--------+
 
 
+29.select emp_name,position,salary from employee
+    -> where salary = ( select min(salary) from employee);
++-----------+----------+--------+
+| emp_name  | position | salary |
++-----------+----------+--------+
+| 강감찬    | 사원     |   1003 |
++-----------+----------+--------+
 
+30. select dep_id,min(salary) as mini from employee
+    -> group by dep_id
+    -> having mini > (select min(salary) from employee
+    -> where dep_id =30) ;
++--------+------+
+| dep_id | mini |
++--------+------+
+|     10 | 1100 |
+|     20 | 1200 |
++--------+------+
+31. select emp_name, salary from employee
+    -> where salary between ( select avg(salary) from employee
+    -> group by position
+    -> having position = '사원') and ( select avg(salary) from employee
+    -> group by position
+    -> having position = '과장');
++-----------+--------+
+| emp_name  | salary |
++-----------+--------+
+| 한국남    |   3000 |
+| 이미라    |   2503 |
+| 놀기만    |   2300 |
+| 무궁화    |   3000 |
+| 이성계    |   2803 |
+| 임꺽정    |   2200 |
++-----------+--------+
 
+32. update employee set dep_id = 40
+    -> where emp_name = '놀기만' or emp_name = '류별나';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+33. update employee 
+set salary = 
+(select salary from(select salary employee where emp_name = '공부해') as aa),
+position=
+(select position from(select position employee where emp_name = '공부해' ) as bb)
+where emp_name ='놀기만';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+34. insert into dept
+(dep_id , dep_name, loc)
+values (50 , '기획부', '제주');
+Query OK, 1 row affected (0.01 sec)
+insert into employee
+(emp_name, dep_id, position, salary, 
+hire_date, jumin_num, phone_num, mgr_emp_no) 
+values( '말똥이', 50, '과장', 4200,'1993-01-03','8911232452719', '01990084876', 13);
+Query OK, 1 row affected (0.01 sec)
 
 
