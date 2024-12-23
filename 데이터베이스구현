@@ -1,3 +1,4 @@
+https://yean-93.tistory.com/211
 create table dept(
 dep_id int primary key,
 dep_name varchar(10) ,
