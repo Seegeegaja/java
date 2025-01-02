@@ -1,0 +1,42 @@
+
+
+
+git : 버전관리를 하기 위한 툴
+
+github : git을 기반으로 운영되는 사이트
+
+작업영역 -- 관리영역 -- 저장 영역
+working     staging      
+
+
+1.관리할 폴더에 가서 
+>>git init
+2.관리대상 파일
+>>git add . 
+3.커밋
+>>git commit -m '메세지'
+commit은 하나의 작업이 완료될때마다 진행을 하는것이 일반적입니다
+Ex) 로그인 구현
+-- 모두다 구현 - 검증한후에 한방에 commit
+--작업단위 마다 commit
+-----view 구현후 commit
+-----service 구현후 commit
+-----repository 구현후 commit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
