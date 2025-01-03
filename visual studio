@@ -1,0 +1,69 @@
+1. 어떤대상 폴더를 버전관리 할것인가를 결정
+
+2. 처음 설정
+>> git config --globel user.name '나의 계정'
+>> git config --globel user.email '깃가입시 이메일'
+
+3.해당폴더를 깃 관리 시작
+>>git init ---> .git 폴더 생성
+
+4.관리 시작 -> 커밋 -> 원격
+>>git add .
+>>git commit -m '메세지'
+>>git push
+
+5.브랜치생성 사본을 만들고 병합하기 위해 만듬
+>>git branch myTestBranch
+>> git switch 브래치 이름
+
+6. Merge 방법
+3-way, fast-forward , squach and merhe , rebase
+
+>>메인브랜치에서 
+>> git merge 머지할 브랜치 명 (3-way 머지)
+
+-rebase 머지는
+브랜치에서 작업한 내용을 커밋정보를 유지한채로 메인에 연결해주는 머지
+
+원격과 연결해서 작업
+1. 깃 허브사이트에 repository를 생성
+
+2.나의 로컬과 원격을 연결하 작업
+>>git remote add origin 원격위치정보
+
+3.원격에 push
+>>git push -u origin main (한번만 하면 나중에 fit push만 써도 된다)
+>>git push (나중엔 이렇게만 해도 된다)
+
+
+gitignore.io
+
+http://127.0.0.1:5500/index.html
+127.0.0.1=localhost (내 컴)
+5500
+
+JSON(JavaScirpt Object Notation)
+제이슨 ***********************
+
+{
+"emmet.variables": {
+        "lang": "kr"
+    },
+    "editor.tabSize": 2,
+}
+
+<바로 뒤에 있는걸 테그이름,그 다음은 속성 다음 속성값
+
+
+Object type
+{ red: '빨강색', origin: '주황색', yellow: '노랑색' }
+
+JSON 문자를 전송할때 씀
+{ 'red': '빨강색', 'origin': '주황색', 'yellow': '노랑색' }
+
+
+
+
+
+
+
