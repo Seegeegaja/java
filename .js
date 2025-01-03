@@ -290,6 +290,7 @@ console.log(`
 console.log(ive[2]);
 
 console.log(ive);
+8_loop.js
 //1. 구구단 출력
 
 for(let i = 1; i<10; i++){
