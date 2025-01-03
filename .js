@@ -290,4 +290,30 @@ console.log(`
 console.log(ive[2]);
 
 console.log(ive);
+//1. 구구단 출력
 
+for(let i = 1; i<10; i++){
+  for(let j = 1; j<10; j++){
+    console.log(i,j,(i*j));
+  }
+};
+
+//2. #찍기
+/**
+ *     #
+ *    ###
+ *   #####
+ *  #######
+ */
+
+const lev = 5;
+for(let i =1; i<=lev; i++){
+  let stars = "";
+  for(let j = 1; j<=lev-i; j++){
+    stars = stars + " ";
+  }
+  for(let k = 1; k<=i*2-1; k++){
+    stars=stars+"*"
+  }
+  console.log(stars)
+}
