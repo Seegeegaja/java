@@ -1,0 +1,31 @@
+html + css + javascript = application 제작
+
+
+SPA(Single Page Application) -> app
+-Reeact : Javascript --> React 문법
+-Vue : JS안씀 --> Vue 문법
+
+app -> Build(배포하기 위한 필요 파일 생성)
+
+-- index.html / css / js
+
+프로젝트 생성 방법
+1.폴더를 생성 
+2. 폴더 shift 우클릭 -> 여기에 powershell창 열기
+
+set-ExecutionPolicy unrestricted
+
+npx create-react-app test-app
+
+npm install web-vitals
+
+
+
+
+-일반 변수 : 바뀌면 다시 자동rendering 안됨
+-state : 변수랑 비슷, 자료를 잠깐 정장하는 용도
+          바뀌면, 자동 rendering되서 페이지가 바뀜
+
+
+
+
