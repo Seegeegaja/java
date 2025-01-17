@@ -27,5 +27,18 @@ npm install web-vitals
           바뀌면, 자동 rendering되서 페이지가 바뀜
 
 
+-특정 모듈을 추가로 설치하는 명령
+>npm install 모듈명 = npm -i 모듈명 (실패할수 있고 문제가 있으면 yarn으로 설치 하며 yarn이 정확하게 설치함)
+>yarn add 모듈명
+
+**git 업로드 제외 
+https://www.toptal.com/developers/gitignore/
+
+
+
+index = y && showMdal = false 
+
+
+ 
 
 
