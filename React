@@ -43,7 +43,46 @@ https://www.toptal.com/developers/gitignore/
 index = y && showMdal = false 
 
 
+http://localhost:3000 ---리엑트
 
+SAP --index(page)
+Router
+http://localhost:3000/login
+http://localhost:3000/main
+http://localhost:3000/detail?id=3
+Nested Route (중첩 라우팅)
+http://localhost:3000/admin/manger
+http://localhost:3000/admin/login
+http://localhost:3000/admin/logout
+
+http://localhost:3000/about
+http://localhost:3000/about/member
+http://localhost:3000/about/location
+
+http://localhost:8080 --> 아마존 --> http://localhost:5000
+
+url에 값을 전달 하는 방법은 2가지
+-Get : URL의 경로 및 전달값을 표현 해주는 방식 (노출)
+-- 쿼리 스트링 방식(Query String)
+   http://localhost/idol?name=장원영&age=20
+-- pathVariable(경로 변수)
+   http://localhost/idol/1
+{ name : '장원영' , age : 20 , position : '비주얼' }
+-Post : URL의 경로만 보임(전달값은 안보임)
+
+우리 신발 요청
+localhost:3000/detail?id=0 -- 쿼리 스트링 타입
+==== 폼에서 submit 단추 누르면 name값이 id인 애의 값을 전달
+localhost:3000/detail/0 -- 패스벨리어블(PathVarible) 타입
+==== 특정 link를 클릭 하면 저 위치의 경로의 정보 보내줘
+
+
+
+경로 뒤에 전달 되는 값을 (((((파라메터)))))라고 함
+
+
+
+//
 
  
 
