@@ -1,0 +1,198 @@
+import "./App.css";
+import { Link, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import roomData from "./component/data";
+import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+
+function App() {
+  let [data, setData] = useState(roomData);
+  let navigate = useNavigate();
+  let [user, setUser] = useState([]);
+  const [uData, setUData] = useState({
+    userId: "",
+    password: "",
+    nickname: "",
+    email: "",
+    phone: "",
+  });
+
+  return (
+    <div className="App">
+      <div className="nve-menu">
+        <Navbar bg="primary" data-bs-theme="dark">
+          <Container>
+            <Nav
+              className="me-auto"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
+            >
+              <Nav.Link href="#">Home</Nav.Link>
+              <Nav.Link href="#">Shop</Nav.Link>
+              <Nav.Link href="#">Abolut</Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
+      </div>
+      {/* 로그인 페이지 */}
+      <Routes>
+        <Route
+          index
+          element={
+            <div className="main">
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                로그인
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  navigate("/users");
+                }}
+              >
+                회원가입
+              </Button>
+            </div>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <div>
+              <Login></Login>
+            </div>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <div>
+              <Users user={user} setUser={setUser} setUData={setUData} uData={uData}></Users>
+            </div>
+          }
+        />
+      </Routes>
+    </div>
+  );
+}
+function Users({uData , setUData, user , setUser}) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // 가입 버튼 클릭 시 데이터 저장
+  const SignUp = () => {
+    if (!uData.userId || !uData.password) {
+      alert("아이디와 비밀번호를 입력해주세요!");
+      return;
+    }
+
+    // App의 user 배열에 추가
+    setUser((prevUsers) => [...prevUsers, uData]);
+
+    // 입력 상태 초기화
+    setUData({
+      userId: "",
+      password: "",
+      nickname: "",
+      email: "",
+      phone: "",
+    });
+
+    alert("회원가입 완료!");
+  };
+  return (
+    <div>
+      <h1>회원가입</h1>
+      <form action="" method="get" onSubmit={(e)=>{e.preventDefault();SignUp();}} >
+        <fieldset>
+          <legend>사용자 정보</legend>
+          <ul>
+            <li>
+              <label >아이디</label>
+              <input
+                type="text"
+                name="userId"
+                value={uData.userId}
+                onChange={handleChange}
+              ></input>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label >비번</label>
+              <input
+                type="password"
+                placeholder="맘데로"
+                name="password"
+                value={uData.password}
+                onChange={handleChange}
+              ></input>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label >이름</label>
+              <input
+                type="text"
+                placeholder="맘데로"
+                name="nickname"
+                value={uData.nickname}
+                onChange={handleChange}
+              ></input>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label for="email-a">메일</label>
+              <input
+                type="email"
+                placeholder="맘데로"
+                name="email"
+                value={uData.email}
+                onChange={handleChange}
+              ></input>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <label for="phone-a">전번</label>
+              <input
+                type="text"
+                id="phone"
+                placeholder="맘데로"
+                name="phone"
+                value={uData.phone}
+                onChange={handleChange}
+              ></input>
+            </li>
+          </ul>
+          <Button variant="primary" type="submit">가입</Button>
+        </fieldset>
+      </form>
+    </div>
+  );
+}
+function Login() {
+  return (
+    <div>
+      <h1>로그인</h1>
+    </div>
+  );
+}
+
+export default App;
