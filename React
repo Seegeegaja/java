@@ -19,6 +19,10 @@ npx create-react-app test-app
 
 npm install web-vitals
 
+집에서 ㅇ 할때 
+
+npm install
+
 
 
 
@@ -37,6 +41,8 @@ https://www.toptal.com/developers/gitignore/
 
 
 index = y && showMdal = false 
+
+
 
 
  
