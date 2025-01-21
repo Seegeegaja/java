@@ -23,7 +23,7 @@ npm install web-vitals
 
 npm install
 
-
+npm install react-router-dom --save
 
 
 -일반 변수 : 바뀌면 다시 자동rendering 안됨
