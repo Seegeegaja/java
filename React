@@ -80,6 +80,28 @@ localhost:3000/detail/0 -- 패스벨리어블(PathVarible) 타입
 
 경로 뒤에 전달 되는 값을 (((((파라메터)))))라고 함
 
+뿌려지기 전에 마운트
+
+
+화면에서 사라질때 언마운트
+
+데이터가 바뀌는걸 usestate
+
+
+react 설치 도구가 yarn/install     
+yarn 설치 방법 (npm install -g yarn 을 입력하여 yarn 을 설치하고)
+npm install 프로그램 명
+yarn add 프로그램 명
+
+npm으로 뭔가 설치를 했는데 문제가 생겼을때
+yarn으로 설치하면 해경이 됨
+axios ===> react,vue를 씀
+
+https://seegeegaja.github.io/js/react_data_01.json
+스프레드를 사용하여 배열에 복사 후 합치기
+
+
+
 
 
 //
