@@ -101,6 +101,41 @@ https://seegeegaja.github.io/js/react_data_01.json
 스프레드를 사용하여 배열에 복사 후 합치기
 
 
+npm install @reduxjs/toolkit react-redux
+설치 후
+store.js 만들고 
+import {configureStore} from '@reduxjs/toolkit'
+export default configureStore({
+retrun : {}
+})
+index.js에 가서 
+import {Providet} from "react-redux";
+import store from "./store"
+App.js에가는 가는 모든걸 감싸야 하며 
+<Provider store={store}>
+ <BrowserRouter>
+      <App />
+  </BrowserRouter>
+</Provider>
+모든걸 덮는 느낌? 
+
+
+
+
+
+
+
+
+
+테이블 위에 seegeegaja님 장바구니
+----------------------------------------------------------------------------
+#	상품명		수량	변경하기
+----------------------------------------------------------------------------
+1	White and Black	2 +-	단추
+----------------------------------------------------------------------------
+2	Red Knit		1 +-	단추
+
+
 
 
 
