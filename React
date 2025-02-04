@@ -236,6 +236,54 @@ Set - 중복 불가
  
 
 
+📌 1. 정규식을 이용해서 문자만 가져오기 (match)
+js
+복사
+편집
+const get = (id) => id.match(/[a-zA-Z]+/)[0];
+
+console.log(get("one1"));   // "one"
+console.log(get("apt2"));   // "apt"
+console.log(get("villa3")); // "villa"
+✅ /[a-zA-Z]+/ → 영어 문자만 찾는 정규식
+✅ .match()[0] → 첫 번째 매칭된 값을 가져옴
+
+📌 2. 숫자가 포함된 부분을 찾아서 문자만 추출하기 (replace)
+js
+복사
+편집
+const get = (id) => id.replace(/[0-9]/g, "");
+
+console.log(get("one1"));   // "one"
+console.log(get("apt2"));   // "apt"
+console.log(get("villa3")); // "villa"
+✅ /[0-9]/g → 숫자를 찾아서 제거
+✅ "one1".replace(/[0-9]/g, "") → "one"
+
+📌 3. 숫자와 문자를 분리하는 방법 (split)
+js
+복사
+편집
+const get = (id) => id.split(/[0-9]/)[0];
+
+console.log(get("one1"));   // "one"
+console.log(get("apt2"));   // "apt"
+console.log(get("villa3")); // "villa"
+✅ split(/[0-9]/) → 숫자를 기준으로 문자열을 나눔
+✅ [0]을 가져오면 "one", "apt" 같은 타입이 나옴
+
+정리
+방법	코드	설명
+정규식 match	id.match(/[a-zA-Z]+/)[0]	영어 부분만 추출
+replace 사용	id.replace(/[0-9]/g, "")	숫자 제거 후 문자만 남김
+split 사용	id.split(/[0-9]/)[0]	숫자로 나눈 후 첫 번째 값 가져옴
+어떤 방법을 써도 되는데 split(/[0-9]/)[0] 이 제일 간단해!
+이제 one1, apt2 같은 ID에서도 타입을 잘 구분할 수 있겠지? 
+
+
+
+
+
 
 
 
