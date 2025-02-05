@@ -1,0 +1,30 @@
+사용자->웹서버()-정적인 파일들 -> WAS()-> 자바스프링 ->db
+
+서버요청
+react Router = 3000/main(서버로 안가는것)
+
+-서버가 main.html파일을 생성해서 클라이언트에게 전달
+크롬이 화면에 뿌려줌
+
+
+localhost:8080/main이게 서버로 날아감 -->요청
+GET/POST 
+WAS가 get인지 post인지 확인한다
+
+main -->
+shop -->
+shop/shoes/0 --> 이런주소가 있니? 
+WAS가 파악을 해줌 
+
+
+
+
+      
+클라--->
+
+
+
+post는 <form>에서만 한다
+el표기법 ${name}
+
+xmlns:th="http:www.thymeleaf.org"!!!!!!!!!
