@@ -1,3 +1,8 @@
+https://start.spring.io/ 프로젝트 만들기 전에 드가서 확인
+https://mvnrepository.com/artifact/org.projectlombok/lombok/1.18.24 디펜던시
+
+만들고 설정 들어가서 설정하기 2개 있어 
+
 사용자->웹서버()-정적인 파일들 -> WAS()-> 자바스프링 ->db
 
 서버요청
