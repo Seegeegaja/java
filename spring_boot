@@ -67,3 +67,61 @@ http://localhost:8080/shoes/3?name=nike
 
 Article
 
+
+
+스프링 프레임 워크레서 자동으로 관리해 주는 컴포넌트
+@Controller
+@Service
+@Repository
+@Component
+스프링이 특별히 관리하는 클레스 
+(요청을 너무 많이해서 자원을 한곳이서 관리하고 처리하는 것들을 스프링이 대신 해줌)
+--------------------------------------------------------------------------------------------------
+
+스프링에서 기존에 상용한 Annotation
+- @Controller : 외부 url요청을 받는 아이 
+- @RequestMapping("/basic") -- 클레스 차원에서 모두 /basic 밑이다
+- 클레스 밑에 메서드
+--@GetMapping --url에 정보가 노출되서 전달되는 것(@PathVariable , @RequestParam)
+--@PostMapping --url에 정보가 숨겨서 오는것 
+-전달되는 url
+1)쿼리 파라메터
+ http://localhost:8080/basic/main?name=장원영&age=20
+ @GetMapping("/basic/main")
+ @RequstParam("name") String name
+2)경로 변수
+ http://localhost:8080/basic/3
+@PathVariable("id") int id
+
+
+Lombok
+1)생성자
+-@NoArgConstryctor ---인자없는 깡통생성장
+-@AllArg .. ---전체 인자로 갖는 생성자
+-@RequiredArg ... -- 선택적 인자(생성자 주입방식)
+
+@Getter @Setter @ToString @EqualsAndHashCode + @Req...
+@Data
+
+thymeleaf
+-저 쪽 자료... 클레스(DTO) -- DTO구조(철자,대소문자...)
+ model.addAttribute("data" , 어쩌구DTO)
+-${data} ===>${data.name}
+-xmlns:th="www.thymeleaf.org"
+-th:text , th:value , th:href , th:field , th:name , th:classppend...
+-link : th:href = "@{/basic/main}"
+-literal : th:href = "@{|/data/${data}|}"
+-th:each="user ,i : ${users}" th:object="${user}"
+=날짜, 돈 , 시간 , 숫자.... :유틸리티
+ #temporals{ }
+
+
+
+
+
+
+
+
+
+
+
