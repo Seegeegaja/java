@@ -115,6 +115,9 @@ thymeleaf
 =날짜, 돈 , 시간 , 숫자.... :유틸리티
  #temporals{ }
 
+HTML(템플릿)<->DTO<->컨트롤러<->서비스<->리포지 토리<->저장소
+						num(있으면 좋고,없으면 null이라도 가져간다)
+num == Optional
 
 
 
