@@ -119,6 +119,44 @@ HTML(템플릿)<->DTO<->컨트롤러<->서비스<->리포지 토리<->저장소
 						num(있으면 좋고,없으면 null이라도 가져간다)
 num == Optional
 
+로그인처리 방법
+1.쿠키(Cookie) - 관리주체... 클라이언트
+2.세션(session(유효기간이 존제)) - 괸리주체... 서버 모델을 사용하것과 비슷
+3.스프링시큐리티(Spring Security) - 로그인
+4.소셜 로그인방식(Auth2 Client) -카카오 네이버 
+5.토큰(Token) 
+
+AOP - 관점지향적 프로그레밍
+
+
+스프링이 관리하는 객체 -- 인스턴스
+@Component
+@Service
+@Bean
+@Repository
+@Controller
+전부 한가지 
+
+Hibernate : ORM(Object Relation Mapper)처리를 담당하는 아이
+
+Hibernate중에 자바진영에서 사용하려고 한게 JPA
+
+
+
+
+
+
+
+
+
+
+
+Controller --> 	Service 		-> Repository
+model<-dtoList<--  	(Entity List-->Dto list)<--Entity Member List
+
+
+
+
 
 
 
