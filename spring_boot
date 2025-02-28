@@ -184,7 +184,130 @@ findByIdBetweenOrderByNameDesc
 select top 10 * from users where like_color = 'Orange' order by gender asc, created_at desc;
 findTop10ByLikeColorOrderByGenderAscCreatedAtDesc
 
+기본적인 흐름:
+Exam 객체를 생성하고, 해당 Exam 객체와 연결할 Student 객체를 찾아옵니다.
+Exam 객체의 student 필드를 설정하고, Student 객체의 examList에 Exam 객체를 추가합니다.
+Exam 객체와 Student 객체를 각각 EntityManager를 사용하여 저장합니다.
+CascadeType.PERSIST가 이미 설정되어 있기 때문에, Student 객체를 저장하면 연관된 Exam도 저장됩니다.
+insert 메서드 수정 방법
+먼저, insert 메서드에서 Exam 객체와 Student 객체를 다루는 방법을 정리합니다.
 
+java
+복사
+public void insert(Exam exam, String studentId) {
+    // 1. 학생 조회
+    Student student = em.find(Student.class, studentId);
+
+    // 학생이 존재하지 않으면 예외 처리 (선택사항)
+    if (student == null) {
+        throw new RuntimeException("학생을 찾을 수 없습니다.");
+    }
+
+    // 2. Exam 객체에 학생 설정
+    exam.setStudent(student);
+
+    // 3. Student 객체의 examList에 해당 Exam 추가
+    student.getExamList().add(exam);
+
+    // 4. Exam 객체 저장 (학번과 관련된 Exam 정보가 저장됨)
+    em.persist(exam);
+
+    // 5. Student 객체 저장 (cascade로 Exam도 저장됨)
+    em.persist(student); // 이 라인은 선택적입니다.
+}
+1. 학생 조회
+java
+복사
+Student student = em.find(Student.class, studentId);
+EntityManager의 find 메서드를 사용하여 studentId로 Student 객체를 조회합니다. Student가 존재하지 않으면 예외를 던지거나 다른 처리를 할 수 있습니다.
+
+2. Exam 객체에 Student 설정
+java
+복사
+exam.setStudent(student);
+Exam 객체의 student 필드를 해당 Student 객체로 설정합니다. Student와 Exam은 양방향 관계이므로, Exam 객체는 Student 객체를 참조해야 합니다.
+
+3. Student 객체의 examList에 Exam 추가
+java
+복사
+student.getExamList().add(exam);
+Student 객체는 여러 개의 Exam을 가질 수 있습니다. Exam 객체가 student.getExamList()에 추가되도록 합니다. 이렇게 함으로써 양방향 관계를 잘 유지할 수 있습니다.
+
+4. Exam 객체 저장
+java
+복사
+em.persist(exam);
+Exam 객체를 저장합니다. exam 객체는 student_id 외래 키와 연결되므로, exam 객체를 저장하면 student_id가 자동으로 설정됩니다.
+
+5. Student 객체 저장
+java
+복사
+em.persist(student);
+Student 객체를 저장합니다. CascadeType.PERSIST가 설정되어 있으므로, Student를 저장하면 Exam 객체도 함께 저장됩니다. 그러나 Exam 객체를 persist한 이후에 Student를 저장하는 이유는, Exam 객체를 먼저 저장하고, 이후 Student 객체의 상태를 갱신하려는 목적입니다. 만약 CascadeType.PERSIST가 제대로 설정되어 있다면 Exam을 저장할 때 Student가 자동으로 저장됩니다.
+
+이 코드에서는 Student를 직접 저장할 수도 있고, Exam만 저장하고도 관계가 잘 유지될 수 있습니다. 이는 Cascade 설정에 따라 다릅니다.
+
+StudentDAO 클래스 수정 예시
+java
+복사
+package com.my.hacksa.dao;
+
+import com.my.hacksa.entity.Exam;
+import com.my.hacksa.entity.Student;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@Transactional
+public class StudentDAO {
+
+    @Autowired
+    private EntityManager em;
+
+    // 모든 학생 리스트 조회
+    public List<Student> getAllList() {
+        String sql = "SELECT s FROM Student AS s " +
+                     "ORDER BY s.student_id ASC";
+        return em.createQuery(sql, Student.class).getResultList();
+    }
+
+    // Exam과 Student 연결하여 저장하는 메서드
+    public void insert(Exam exam, String studentId) {
+        // 1. 학생 조회
+        Student student = em.find(Student.class, studentId);
+
+        // 학생이 존재하지 않으면 예외 처리
+        if (student == null) {
+            throw new RuntimeException("학생을 찾을 수 없습니다.");
+        }
+
+        // 2. Exam 객체에 student 설정
+        exam.setStudent(student);
+
+        // 3. Student 객체의 examList에 해당 Exam 추가
+        student.getExamList().add(exam);
+
+        // 4. Exam 객체 저장
+        em.persist(exam);
+
+        // 5. Student 객체 저장 (CascadeType.PERSIST로 자동으로 Exam도 저장됨)
+        em.persist(student); // (선택 사항)
+    }
+}
+설명
+getAllList(): Student 객체를 EntityManager의 createQuery()를 사용하여 JPQL로 조회하는 예시입니다.
+insert(Exam exam, String studentId): Exam 객체를 저장할 때, 먼저 Student를 찾고, Exam과 Student를 연관시킨 후 저장합니다. 이 과정에서 CascadeType.PERSIST를 사용하여 Exam 객체를 저장하는 것만으로 Student와의 연관 관계를 유지하면서 저장이 가능합니다.
+CascadeType에 대한 설명
+CascadeType.PERSIST: Student 객체를 저장하면 연관된 Exam 객체도 자동으로 저장됩니다.
+CascadeType.REMOVE: Student 객체가 삭제되면 연관된 Exam 객체도 삭제됩니다.
+결론
+**EntityManager**를 사용하여 Exam과 Student 객체를 처리할 수 있습니다.
+양방향 관계에서 두 엔티티를 저장하려면, 연관된 객체들을 올바르게 설정한 후 persist로 저장합니다.
+CascadeType.PERSIST를 적절히 사용하면, Student를 저장할 때 관련된 Exam이 자동으로 저장됩니다.
 
 
 
