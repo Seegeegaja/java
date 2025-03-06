@@ -1,0 +1,14 @@
+ git checkout -b 'post' 
+<브렌치 따로면서 그 브렌치로 넘어가기>
+Switched to a new branch 'post'
+git status
+<브랜치 확인>
+On branch post
+nothing to commit, working tree clean
+
+git add .
+
+git commit -m 'asd'
+
+git push --set-upstream origin post
+<push 하는 방법>
