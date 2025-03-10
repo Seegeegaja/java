@@ -1,0 +1,55 @@
+08d23f630ad25633ffd9504f87104c70
+
+https://dapi.kakao.com/v2/local/search/address.json
+
+
+
+
+
+
+
+
+https://dapi.kakao.com/v2/local/search/address.${FORMAT}
+
+우리가 입력한 주소
+Authorization	Authorization: KakaoAK ${REST_API_KEY}
+				      08d23f630ad25633ffd9504f87104c70
+
+
+"x": "127.037393768491",
+"y": "37.5063640696989"
+
+약국의 카테고리는 PM9
+https://dapi.kakao.com/v2/local/search/keyword.json
+query : 찾고자하는 기준주소
+
+category_group_code PM9
+"x": "127.026692446306",
+"y": "37.4987750083767"
+radius : 100
+sort : distance
+결과 정렬 순서
+distance 정렬을 원할 때는 기준 좌표로 쓰일 x, y와 함께 사용
+distance 또는 accuracy(기본값: accuracy)
+
+카테고리로 요청url
+https://dapi.kakao.com/v2/local/search/keyword.json?
+query=약국&
+category_group_code=PM9&
+x=127.026692446306&
+y=37.4987750083767&
+radius=100&
+sort=distance
+
+로드뷰
+https://map.kakao.com/link/roadview/37.402056,127.108212
+강남엘약국의 경위도
+"x": "127.0263154489116",
+"y": "37.49855885145178"
+https://map.kakao.com/link/roadview/37.49855885145178,127.0263154489116
+길찾기
+https://map.kakao.com/link/to/강남엘약국,37.49855885145178,127.0263154489116
+
+
+지도 바로가기
+https://map.kakao.com/link/search/강남엘약국
