@@ -1,0 +1,152 @@
+public void updateLiquorCountInCart(Cart cart) {
+    int cartCount = cart.getCount();  // Cart의 전체 수량
+
+    // Cart에 있는 Liquor 리스트 순회
+    for (Liquor liquor : cart.getLiquors()) {
+        boolean found = false;
+        // 이미 있는 Liquor인지 확인
+        for (Liquor existingLiquor : cart.getLiquors()) {
+            if (existingLiquor.getId().equals(liquor.getId())) {
+                // 동일한 liquor가 존재하면 count 증가
+                existingLiquor.setCount(existingLiquor.getCount() + liquor.getCount());
+                found = true;
+                break;
+            }
+        }
+        // 동일한 liquor가 없으면 새로 추가 (선택적 로직)
+        if (!found) {
+            cart.getLiquors().add(liquor);
+        }
+    }
+
+    // Cart 저장
+    cartRepository.save(cart);
+}
+
+
+CartDto 클래스에서 totalPrice 계산
+CartDto에 totalPrice를 계산하는 로직을 추가하여, 각 Liquor의 count에 맞는 총 가격을 반환합니다.
+
+CartDto 클래스 수정
+java
+코드 복사
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CartDto {
+    private Long id;
+    private int count;
+    private int price;
+    private List<LiquorDto> list = new ArrayList<>();
+    private Long accountId;
+
+    public CartDto(Cart cart) {
+        this.id = cart.getId();
+        this.count = cart.getCount();
+        this.price = cart.getPrice();
+        this.list = cart.getLiquors().stream()
+                        .map(x -> LiquorDto.fromEntity(x))  // Liquor의 count와 totalPrice 계산
+                        .toList();
+    }
+
+    public static CartDto fromEntity(Cart cart) {
+        return new CartDto(
+                cart.getId(),
+                cart.getCount(),
+                cart.getPrice(),
+                cart.getLiquors().stream()
+                        .map(x -> LiquorDto.fromEntity(x))  // Liquor의 totalPrice 계산
+                        .toList(),
+                cart.getAccount().getId()
+        );
+    }
+
+    public static Cart fromDto(CartDto dto) {
+        Account account = new Account();
+        account.setId(dto.getAccountId());
+        Cart cart = new Cart(dto.getId(), dto.getCount(), dto.getPrice(), account);
+        return cart;
+    }
+}
+LiquorDto에서 totalPrice 계산
+LiquorDto에서 totalPrice를 추가하여 각 Liquor의 totalPrice를 계산합니다.
+
+
+
+
+LiquorDto 클래스 수정
+java
+코드 복사
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class LiquorDto {
+    private Long id;
+    private String name;
+    private int price;
+    private int stock;
+    private String country;
+    private int count;
+    private int totalPrice;  // 추가된 totalPrice
+
+    public static LiquorDto fromEntity(Liquor liquor) {
+        // Liquor의 totalPrice 계산 (count * price)
+        int totalPrice = liquor.getCount() * liquor.getPrice();
+        return new LiquorDto(
+                liquor.getId(),
+                liquor.getName(),
+                liquor.getPrice(),
+                liquor.getStock(),
+                liquor.getCountry(),
+                liquor.getCount(),
+                totalPrice
+        );
+    }
+}
+최종 응답 예시
+이제 CartDto를 반환할 때, 각 Liquor에 대해 count와 totalPrice를 포함하여 응답을 반환하게 됩니다.
+
+예시 JSON 응답
+json
+코드 복사
+{
+    "id": 3,
+    "count": 5,
+    "price": 910000,
+    "list": [
+        {
+            "id": 2,
+            "name": "리벳15Y",
+            "price": 430000,
+            "stock": 10,
+            "country": "korea",
+            "count": 1,
+            "totalPrice": 430000
+        },
+        {
+            "id": 5,
+            "name": "멈 로제",
+            "price": 120000,
+            "stock": 7,
+            "country": "korea",
+            "count": 3,
+            "totalPrice": 360000
+        },
+        {
+            "id": 6,
+            "name": "까베르네 쇼비뇽",
+            "price": 120000,
+            "stock": 3,
+            "country": "france",
+            "count": 1,
+            "totalPrice": 120000
+        }
+    ],
+    "accountId": 1
+}
+요약
+Cart의 count를 기준으로 Liquor의 count를 늘리지 않고, list 내에서 동일한 상품의 count 값을 증가시킵니다.
+각 Liquor의 totalPrice는 해당 Liquor의 count * price로 계산하여 반환합니다.
+이와 같은 방식으로 구현하면, Cart에 동일한 Liquor가 여러 번 존재할 경우, Liquor의 count와 totalPrice를 적절히 반영할 수 있습니다.
+
+
