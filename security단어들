@@ -1,0 +1,23 @@
+Architecture = 건축
+
+SecyrityContextHolder =스프링 시큐리티에서 인증된 사용자의 세부 정보를 저장하는 공간
+
+AuthenticationFilter =인증 필터
+
+AuthoticationObject = 사용자가 인증된 상태를 나타내는 객체
+
+AuthenticationManager = 사용자의 인증 정보를 검증하고 인증을 처리하는 인터페이스
+
+AuthenticationProvider = 사용자의 정보를 가져와 인증을 처리하는 추상화된 인터페이스
+
+Authenyicated = 인증됨
+
+SecurityFliterCahain =여러 개의 보안 필터들을 연속적으로(Chain) 실행하여 HTTP 요청을 처리하는 방식입니다.
+
+Application Context =애플리케이션의 구성 요소를 관리하고 제어하는 개념
+
+Failure =실패
+
+AbstractAuthenticationProcessingFilter = 애브스트랙트 인증 처리 필터
+Abstract: 추상적인,Authentication: 인증,Processing: 처리,Filter: 필터
+(인증 요청을 처리하는 필터의 기본 구현을 제공합니다)
