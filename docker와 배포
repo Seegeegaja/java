@@ -1,0 +1,52 @@
+고정IP : 13.210.114.176
+mysql user : admin
+mysql password: wnsdyd821
+db_name : mydb
+
+AWS_IP 13.210.114.176
+AWS_KEY
+DOCKER_IMAGE_NAME full-stack
+DOCKER_USER_NAME seegeegaja
+DOCKER_USER_PW Wnsdyd12!@
+
+rds endpoint : full-stack-db.cro4um2a2zrx.ap-southeast-2.rds.amazonaws.com
+
+
+
+docker build -t seegeegaja/full-stack-backend . 
+docker push seegeegaja/full-stack-backend
+
+docker build -t seegeegaja/full-stack-frontend . 
+docker push seegeegaja/full-stack-frontend
+EC2 버버 임대
+ubuntu - username = ubuntu
+AWS linux - username = ec2-user
+drwxr-x--- 4 ubuntu ubuntu 4096 Mar 26 02:37 ubuntu
+
+
+
+- 파일   = rwx(유져)rwx(그룹)rwx(외부)	777 a.txt
+d 디렉토리
+
+
+rwx 2진수로 바꾸면 421= 7
+746 rwx r-- --x
+
+
+-- ./gradlew build
+-- 해당 jar 파일이 있는 곳으로 이동
+
+
+
+
+chmod u+x gradlew
+
+
+netstate -nlpt
+
+timedatectl list-timezones | grep Seoul
+
+timedatectl 
+
+sudo timedatectl set-timezone Asia/Seoul
+
