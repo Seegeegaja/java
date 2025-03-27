@@ -1,3 +1,6 @@
+172.31.14.63
+
+
 고정IP : 13.210.114.176
 mysql user : admin
 mysql password: wnsdyd821
@@ -10,6 +13,23 @@ DOCKER_USER_NAME seegeegaja
 DOCKER_USER_PW Wnsdyd12!@
 
 rds endpoint : full-stack-db.cro4um2a2zrx.ap-southeast-2.rds.amazonaws.com
+
+
+172.31.14.63
+
+
+
+고정IP : 13.210.114.176 -- EC2 탄력IP
+mysql user : admin   -- RDS
+mysql password: wnsdyd821 -- RDS
+db_name : mydb  -- RDS  접속 후 본인 생성
+
+AWS_IP 13.210.114.176 -- 고정IP
+AWS_KEY -- pem 키 (mobaXtem : 접속 시 쓰는거)
+DOCKER_IMAGE_NAME dopaminx ---  Docker Image Build 할 때 기초 이름
+DOCKER_USER_NAME seegeegaja -- 재정 docker hub id
+DOCKER_USER_PW Wnsdyd12!@  -- 재정 docker hub pw
+
 
 
 
@@ -49,4 +69,31 @@ timedatectl list-timezones | grep Seoul
 timedatectl 
 
 sudo timedatectl set-timezone Asia/Seoul
+
+
+
+
+
+
+
+
+spring:
+  datasource:
+    url: jdbc:mysql://full-stack-db.cro4um2a2zrx.ap-southeast-2.rds.amazonaws.com:3306/mydb
+    username: admin
+    password: wnsdyd821
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: create-drop
+
+docker-compose down --remove--orphans
+
+
+
+
+
 
